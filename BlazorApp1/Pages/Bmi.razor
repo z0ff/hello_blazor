@@ -1,0 +1,25 @@
+﻿@page "/bmi"
+
+<h1>BMI計算</h1>
+
+<p>身長(m) <input id="height" type="number" @bind="@height" /></p>
+<br />
+<p>体重(kg) <input id="weight" type="number" @bind="@weight" /></p>
+<br />
+<button class="btn btn-primary" @onclick="CalcBmi">BMI算出</button><br />
+<p>BMI: @bmi</p>
+
+@code {
+    private string height = "0";
+    private string weight = "0";
+    private decimal? bmi;
+
+    private void CalcBmi()
+    {
+        if (height == "0" || weight == "0") {
+            bmi = null;
+        } else {
+            bmi = Decimal.Parse(weight) / (Decimal.Parse(height) * Decimal.Parse(height));
+        }
+    }
+}
